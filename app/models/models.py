@@ -30,6 +30,7 @@ from sqlalchemy import (
 )
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
+from sqlalchemy import Table, Column, Uuid
 
 
 # -------------------------------------------------------------------
@@ -38,6 +39,15 @@ from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
 class Base(DeclarativeBase):
     pass
+
+#Directus
+
+directus_users = Table(
+    "directus_users",
+    Base.metadata,
+    Column("id", Uuid(as_uuid=True), primary_key=True),
+    info={"managed_by": "directus"},
+)
 
 
 # -------------------------------------------------------------------
